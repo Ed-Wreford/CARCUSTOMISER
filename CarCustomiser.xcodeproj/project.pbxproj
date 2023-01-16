@@ -16,6 +16,7 @@
 		F66ADFEF2974A29300ED1A34 /* CarCustomiserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66ADFEE2974A29300ED1A34 /* CarCustomiserUITestsLaunchTests.swift */; };
 		F66ADFFC2974A4FE00ED1A34 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66ADFFB2974A4FE00ED1A34 /* Car.swift */; };
 		F66ADFFD2974A55200ED1A34 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66ADFFB2974A4FE00ED1A34 /* Car.swift */; };
+		F66ADFFF2975984B00ED1A34 /* CarCustomiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66ADFE22974A29300ED1A34 /* CarCustomiserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,7 @@
 			files = (
 				F66ADFD42974A28F00ED1A34 /* ContentView.swift in Sources */,
 				F66ADFD22974A28F00ED1A34 /* CarCustomiserApp.swift in Sources */,
+				F66ADFFF2975984B00ED1A34 /* CarCustomiserTests.swift in Sources */,
 				F66ADFFC2974A4FE00ED1A34 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
