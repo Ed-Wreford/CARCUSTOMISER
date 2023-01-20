@@ -11,13 +11,27 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let car = Car(make: "Mazda", model: "MX-5", topSpeed: 125, acceleration: 7.7, handling: 5)
-    
+    let starterCars = StarterCars()
+    @State private var selectedCar: Int = 0 {
+        
+        didSet {
+            if selectedCar >= starterCars.cars.count {
+                selectedCar  = 0
+            }
+        }
+        
+    }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(car.displayStats())"
-            )
+        VStack(alignment: .leading, spacing: 20) {
+            Text("\(starterCars.cars[selectedCar].displayStats())")
+                .foregroundColor(Color.black)
+            
+            Button("Next Car", action: {
+                selectedCar += 1
+                
+                //selectedCar = Int.random(in: 0 ..< self.starterCars.cars.count)
+            })
         }
     }
     
