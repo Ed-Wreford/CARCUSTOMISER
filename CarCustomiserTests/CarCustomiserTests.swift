@@ -18,7 +18,7 @@ final class CarCustomiserTests: XCTestCase {
         XCTAssertEqual(car.make, "Mazda")
         XCTAssertEqual(car.model, "MX-5")
         XCTAssertEqual(car.topSpeed, 125)
-        XCTAssertEqual(car.acceleration, 7.0)
+        XCTAssertEqual(car.acceleration, 7.7)
         XCTAssertEqual(car.handling, 5)
     }
 
@@ -29,11 +29,11 @@ final class CarCustomiserTests: XCTestCase {
 Make: Mazda
 Model: MX-5
 Top Speed: 125mph
-Acceleration: 7.7s
+Acceleration (0-60): 7.7s
 Handling: 5
 """
         //arrange
-        let actual = body
+        let actual = car.displayStats()
         //assert
         XCTAssertEqual(actual, expectedOutput)
         

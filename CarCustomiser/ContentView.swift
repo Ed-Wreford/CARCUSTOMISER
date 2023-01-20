@@ -16,28 +16,18 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Make: \(car.make)")
-                    .foregroundColor(Color.red)
-            Text("Model: \(car.model)")
-                    .foregroundColor(Color.red)
-            Text("Top Speed: \(car.topSpeed)mph")
-                    .foregroundColor(Color.red)
-            Text("Acceleration (0-60): \(car.acceleration)s")
-                    .foregroundColor(Color.red)
-            Text("Handling: \(car.handling)")
-                    .foregroundColor(Color.red)
-                
-            }
-            .padding(1.0)
+            Text("\(car.displayStats())"
+            )
         }
     }
     
     
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
             
+        }
     }
 }
