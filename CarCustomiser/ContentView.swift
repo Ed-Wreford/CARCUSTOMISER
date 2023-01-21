@@ -28,7 +28,7 @@ struct ContentView: View {
     var body: some View {
         
         let exhaustPackageBinding = Binding<Bool> (
-            get: { self.exhaustPackageBinding }
+            get: { self.exhaustPackage }
             set: { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
@@ -41,7 +41,7 @@ struct ContentView: View {
         )
         
         let tiresPackageBinding = Binding<Bool> (
-            get: { self.tiresPackageBinding }
+            get: { self.tiresPackage }
             set: { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
@@ -54,7 +54,7 @@ struct ContentView: View {
         )
         
         let nitroBoostPackageBinding = Binding<Bool> (
-            get: { self.nitroBoostPackageBinding }
+            get: { self.nitroBoostPackage }
             set: { newValue in
                 self.nitroBoostPackage = newValue
                 if newValue == true {
@@ -67,7 +67,7 @@ struct ContentView: View {
         )
         
         let godModePackageBinding = Binding<Bool> (
-            get: { self.godModePackageBinding }
+            get: { self.godModePackage }
             set: { newValue in
                 self.godModePackage = newValue
                 if newValue == true {
