@@ -22,12 +22,30 @@ final class CarCustomiserUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testWhenBoughtTiresAndExhaustPackageOtherTwoUpgradesAreDisabled() throws {
+        //arrange
         let app = XCUIApplication()
         app.launch()
+        
+        //action
+        
+        
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.switches["Exhaust package (Cost: 500)"]/*[[".cells.switches[\"Exhaust package (Cost: 500)\"]",".switches[\"Exhaust package (Cost: 500)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.switches["Tires package (Cost: 500)"]/*[[".cells.switches[\"Tires package (Cost: 500)\"]",".switches[\"Tires package (Cost: 500)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        //assert
+        
+        XCTAssertEqual(collectionViewsQuery/*@START_MENU_TOKEN@*/.switches["Nitro boost package (Cost: 500)"]/*[[".cells.switches[\"Nitro boost package (Cost: 500)\"]",".switches[\"Nitro boost package (Cost: 500)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.isEnabled, false)
+        XCTAssertEqual(collectionViewsQuery/*@START_MENU_TOKEN@*/.switches["God package (Cost: 1000)"]/*[[".cells.switches[\"God package (Cost: 1000)\"]",".switches[\"God package (Cost: 1000)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.isEnabled, false)
+        
+        
+        
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        
+        
+        
     }
 
     func testLaunchPerformance() throws {

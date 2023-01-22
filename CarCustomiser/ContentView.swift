@@ -25,47 +25,31 @@ struct ContentView: View {
     @State private var nitroBoostPackage = false
     @State private var godModePackage = false
     @State private var remainingFunds = 1000
+    @State private var remainingTime = 30
+    @State private var nextCarEnabled: Bool = true
     
     var exhaustPackageEnabled: Bool {
-        if remainingFunds - 500 >= 0 {
-            return true
-        }
-        else {
-            return false
-        }
+        exhaustPackage ? true : remainingFunds >= 500 ? true : false
     }
     
     var tiresPackageEnabled: Bool {
-        if remainingFunds - 500 >= 0 {
-            return true
-        }
-        else {
-            return false
-        }
+        tiresPackage ? true : remainingFunds >= 500 ? true : false
     }
     
     var nitroBoostPackageEnabled: Bool {
-        if remainingFunds - 500 >= 0 {
-            return true
-        }
-        else {
-            return false
-        }
+        nitroBoostPackage ? true : remainingFunds >= 500 ? true : false
     }
     
     var godModePackageEnabled: Bool {
-        if remainingFunds - 1000 >= 0 {
-            return true
-        }
-        else {
-            return false
-        }
+        godModePackage ? true : remainingFunds >= 1000 ? true : false
     }
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
         let exhaustPackageBinding = Binding<Bool> (
-            get: { self.exhaustPackage }
+            get: { self.exhaustPackage },
             set: { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
@@ -80,7 +64,7 @@ struct ContentView: View {
         )
         
         let tiresPackageBinding = Binding<Bool> (
-            get: { self.tiresPackage }
+            get: { self.tiresPackage },
             set: { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
@@ -95,7 +79,7 @@ struct ContentView: View {
         )
         
         let nitroBoostPackageBinding = Binding<Bool> (
-            get: { self.nitroBoostPackage }
+            get: { self.nitroBoostPackage },
             set: { newValue in
                 self.nitroBoostPackage = newValue
                 if newValue == true {
@@ -110,7 +94,7 @@ struct ContentView: View {
         )
         
         let godModePackageBinding = Binding<Bool> (
-            get: { self.godModePackage }
+            get: { self.godModePackage },
             set: { newValue in
                 self.godModePackage = newValue
                 if newValue == true {
@@ -128,6 +112,21 @@ struct ContentView: View {
             
         )
         VStack {
+            Text("\(remainingTime)")
+                .onReceive(timer) { _ in
+                    if self.remainingTime > 0 {
+                        self.remainingTime -= 1
+                    }
+                    if remainingTime == 0 {
+                        remainingFunds = 0
+                        exhaustPackage = false
+                        tiresPackage = false
+                        nitroBoostPackage = false
+                        godModePackage = false
+                        nextCarEnabled = false
+                    }
+                }
+                .foregroundColor(.red)
             Form {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("\(starterCars.cars[selectedCar].displayStats())")
@@ -137,6 +136,7 @@ struct ContentView: View {
                         selectedCar += 1
                         resetDisplay()
                     })
+                    .disabled(!nextCarEnabled)
                 }
                 Section {
                     Toggle("Exhaust package (Cost: 500)", isOn: exhaustPackageBinding)
@@ -156,13 +156,19 @@ struct ContentView: View {
                 .baselineOffset(20)
         }
         
-     func resetDisplay()
-        
-        
-        
+    
     }
     
-    
+    func resetDisplay() {
+        
+        remainingFunds = 1000
+        exhaustPackage = false
+        tiresPackage = false
+        nitroBoostPackage = false
+        godModePackage = false
+        starterCars = StarterCars()
+        
+    }
     
     
     
